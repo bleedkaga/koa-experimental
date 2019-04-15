@@ -1,0 +1,23 @@
+{
+  "name": "koa-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "koa": "^2.7.0",
+    "koa-better-router": "^2.1.1",
+    "koa-session": "^5.10.1",
+    "koa-static-server": "^1.4.0",
+    "koa-views": "^6.2.0",
+    "log4js": "^4.1.0",
+    "require-all": "^3.0.0"
+  }
+}

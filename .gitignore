@@ -1,0 +1,39 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+sample/node_modules/
+sample/assets/node_modules/
+
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+
+build
+.dll
+.idea
+.vscode
+.cache-loader
+jsconfig.json
+yarn.lock
+<<<<<<< HEAD
+index-old.html
+=======
+>>>>>>> 7c3e8d409cc4432f76e32ee4dfb24822b57185b1
