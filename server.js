@@ -6,14 +6,16 @@ const port = 3001;
 const router = require('./router');
 const session = require('koa-session');
 const app = new Koa();
-
+const RES_HOST = '/public';
+const RES_PATH = path.join(process.cwd(), RES_HOST); //静态资源路径
+app.context.staticPath = RES_HOST;
 //加载日志模块
 app.use(async (ctx, next) => {
     ctx.util = {
         log: require('./utils/log')
     };
     await next();
-})
+});
 
 
 app.use(session({
@@ -51,7 +53,9 @@ app.use(
 //页面变量注入
 app.use( async (ctx, next) => {
     ctx.state = {
-        world : 'world'
+        staticPath: RES_HOST,
+        world : 'world',
+        pathname: ctx.url
     };
     return next();
 });
@@ -64,8 +68,8 @@ app.use((ctx, next) => router.middleware()(ctx, next));
 //注册静态文件的访问方式
 app.use(
     staticServer({
-        rootDir: path.join(process.cwd(), '/public'),
-        rootPath: '/public'
+        rootDir: RES_PATH,
+        rootPath: RES_HOST
     })
 );
 
