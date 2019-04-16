@@ -8,17 +8,17 @@ function KoaBetterRouter (options) {
     this.options = utils.extend({ prefix: '/' }, options)
     this.route = utils.pathMatch(this.options)
     this.routes = []
-}
-console.log(utils)
+};
+
 KoaBetterRouter.prototype.loadMethods = function loadMethods () {
     utils.methods.forEach(function (method) {
-        let METHOD = method.toUpperCase()
+        let METHOD = method.toUpperCase();
         KoaBetterRouter.prototype[method] =
             KoaBetterRouter.prototype[METHOD] = function httpVerbMethod () {
-                let args = [].slice.call(arguments)
+                let args = [].slice.call(arguments);
                 return this.addRoute.apply(this, [METHOD].concat(args))
             }
-    })
-    KoaBetterRouter.prototype.del = KoaBetterRouter.prototype['delete']
+    });
+    KoaBetterRouter.prototype.del = KoaBetterRouter.prototype['delete'];
     return this
-}
+};
