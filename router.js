@@ -6,6 +6,7 @@ const controllers = require('require-all')({
 
 router.get('/hello', controllers.base.hello);
 router.get('/vue', controllers.base.vue);
+router.get('/user-table-enter', controllers.base.userTableEnter);
 
 router.get('*', (ctx, next) => {
     const ignorePath = [ctx.staticPath, '/favicon.ico'];

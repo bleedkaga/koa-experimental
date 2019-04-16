@@ -5,6 +5,7 @@ const path = require('path');
 const port = 3001;
 const router = require('./router');
 const session = require('koa-session');
+const koaBody = require('koa-body');
 const app = new Koa();
 const RES_HOST = '/public';
 const RES_PATH = path.join(process.cwd(), RES_HOST); //静态资源路径
@@ -40,6 +41,26 @@ app.use(async (ctx, next) => {
     }
 });
 
+// koa body
+app.use(
+    koaBody({
+        jsonLimit: '1mb',
+        formLimit: '100kb',
+        textLimit: '100kb',
+        onError:(error, ctx) => {
+            console.log(`[koa body] error: ${error}`);
+            throw err;
+        },
+        multipart: true,
+        formidable: {
+            //multipart/form-data
+            maxFields: 1000, //query 字符数 (0表示无限制)
+            maxFieldsSize: 2 * 1024 * 1024, //默认单位内存量 2MB
+            maxFileSize: 20 * 1024 * 1024, //限制上传文件的大小 20MB
+            keepExtensions: true,
+        }
+    })
+);
 //模板渲染
 app.use(
     views(path.join(__dirname, './views'), {
