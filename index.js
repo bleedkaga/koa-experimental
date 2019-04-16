@@ -5,8 +5,8 @@ function KoaBetterRouter (options) {
         return new KoaBetterRouter(options)
     }
 
-    this.options = utils.extend({ prefix: '/' }, options)
-    this.route = utils.pathMatch(this.options)
+    this.options = utils.extend({ prefix: '/' }, options);
+    this.route = utils.pathMatch(this.options);
     this.routes = []
 };
 
@@ -22,3 +22,16 @@ KoaBetterRouter.prototype.loadMethods = function loadMethods () {
     KoaBetterRouter.prototype.del = KoaBetterRouter.prototype['delete'];
     return this
 };
+
+KoaBetterRouter.prototype.createRoute = function createRoute(method, route, fns){
+    let args = [].slice.call(arguments, 3);
+    let middlewares = utils.arrayify(fns).concat(args);
+
+    if(typeof method !== 'string'){
+        throw new TypeError('.createRoute: expect `method` to be a string')
+    }
+};
+
+
+let router = KoaBetterRouter().loadMethods();
+console.log(router.post)
