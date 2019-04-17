@@ -140,11 +140,4 @@ MKoaBetterRouter.prototype.legacyMiddleware = function legacyMiddleware () {
     return utils.convert.back(this.middleware())
 }
 
-let router = MKoaBetterRouter().loadMethods();
-router.get('/hello', function(){
-    console.log('a')
-}, function(){
-    console.log('b')
-}, function(){
-    console.log('c')
-})
+module.exports = MKoaBetterRouter;
